@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intern</title>
+</head>
+<body>
+  <h1>Intern matching</h1>
+  <button id="runButton">Match</button>
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('runButton').addEventListener('click', () => {
+      // Make an AJAX request to trigger the Python script execution
+      fetch('/runcode')
+        .then(response => response.text())
+        .then(result => {
+          document.getElementById('result').innerHTML = `<p>${result}</p>`;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('result').innerHTML = '<p>Error occurred during script execution.</p>';
+        });
+    });
+  </script>
+</body>
+</html>
